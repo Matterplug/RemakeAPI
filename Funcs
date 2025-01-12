@@ -1,11 +1,11 @@
 -- open source because lol 
-getgenv().IS_REMAKE_LOADED = false
+getgenv().IS_ARTIFICIAL_LOADED = false
 local oldr = request 
 getgenv().request = function(options)
 	if options.Headers then
-		options.Headers["User-Agent"] = "Remake/RobloxApp/2.1"
+		options.Headers["User-Agent"] = "Artificial/RobloxApp/2.1"
 	else
-		options.Headers = {["User-Agent"] = "Remake/RobloxApp/2.1"}
+		options.Headers = {["User-Agent"] = "Artificial/RobloxApp/2.1"}
 	end
 	local response = oldr(options)
 	return response
@@ -30,7 +30,7 @@ getgenv().require = function(scr) -- not mine
 	assert(type(scr) == "number" or (typeof(scr) == "Instance" and scr.ClassName == "ModuleScript"), "Expected")
 	if (type(scr) == "number") then 
 		if not game:GetObjects('rbxassetid://' .. scr)[1] then 
-			warn("[ Remake ]: Require failed: invalid asset ID")
+			warn("[ Artificial ]: Require failed: invalid asset ID")
 			return 
 		end
 		if typeof(game:GetObjects('rbxassetid://' .. scr)[1]) == "Instance" and game:GetObjects('rbxassetid://' .. scr)[1].ClassName == "ModuleScript" then
@@ -41,7 +41,7 @@ getgenv().require = function(scr) -- not mine
 					warn("[ Remake ]: Require failed: cant require a modulescript with no code")
 				end
 			else 
-				warn("[ Remake ]: Require failed: require asset id failed")
+				warn("[ Artificial ]: Require failed: require asset id failed")
 			end
 		end
 		return
@@ -186,9 +186,9 @@ end, function()
 end)
 
 check("getaffiliateid", function()
-    return "Remake"
+    return "Artificial"
 end, function()
-    assert(getgenv().getaffiliateid() == "Remake", "getaffiliateid function test failed")
+    assert(getgenv().getaffiliateid() == "Artificial", "getaffiliateid function test failed")
 end)
 
 check("getplayer", function(name: string)
@@ -907,10 +907,10 @@ function Bridge:InternalRequest(body, timeout)
 	end)
 
 	if success and result then
-		error("[Salad Error]: " .. tostring(result), 2)
+		error("[Artificial Error]: " .. tostring(result), 2)
 	end
 
-	error("[Salad Error]: Unknown server error", 2)
+	error("[Artificial Error]: Unknown server error", 2)
 end
 
 function Bridge:request(options)
@@ -941,7 +941,7 @@ function Bridge:request(options)
 	end
 	return {
 		Success = false,
-		StatusMessage = "[Remake Error]: webServer connection failed:  " .. self.serverUrl,
+		StatusMessage = "[Artificial Error]: webServer connection failed:  " .. self.serverUrl,
 		StatusCode = 599;
 		HttpError = Enum.HttpError.ConnectFail
 	}
@@ -982,17 +982,17 @@ if not shared.vulnsm then
 	end
 	getgenv().rconsoleclear = function()
 		Bridge:rconsole("cls") 
-		rconsolesettitle("Remake is NOT fat!")
+		rconsolesettitle("Artificial is NOT fat!")
 	end
 	
 	getgenv().rconsolecreate = function()
 		Bridge:rconsole("crt")
-		rconsolesettitle("Remake is NOT fat!")
+		rconsolesettitle("Artificial is NOT fat!")
 	end
 	
 	getgenv().rconsoledestroy = function()
 		Bridge:rconsole("dst")
-		rconsolesettitle("Remake is NOT fat!")
+		rconsolesettitle("Artificial is NOT fat!")
 	end
 	
 	getgenv().rconsoleprint = function(...)
@@ -1001,7 +1001,7 @@ if not shared.vulnsm then
 			text = text .. tostring(v) .. " "
 		end
 		Bridge:rconsole("prt", text)
-		rconsolesettitle("Remake is NOT fat!")
+		rconsolesettitle("Artificial is NOT fat!")
 	end
 	
 	getgenv().rconsoleinfo = function(...)
@@ -1010,7 +1010,7 @@ if not shared.vulnsm then
 			text = text .. tostring(v) .. " "
 		end
 		Bridge:rconsole("prt", "[ INFO ] " .. text)
-		rconsolesettitle("Remake is NOT fat!")
+		rconsolesettitle("Artificial is NOT fat!")
 	end
 	
 	getgenv().rconsolewarn = function(...)
@@ -1019,15 +1019,15 @@ if not shared.vulnsm then
 			text = text .. tostring(v) .. " "
 		end
 		Bridge:rconsole("prt", "[ WARNING ] " .. text)
-		rconsolesettitle("Remake is NOT fat!")
+		rconsolesettitle("Artificial is NOT fat!")
 	end
 	getgenv().rconsoleinput = function(text)
 		Bridge:rconsole("prt", "[ ERROR ] Input doesnt work")
-		rconsolesettitle("Remake is NOT fat!")
+		rconsolesettitle("Artificial is NOT fat!")
 	end
 	getgenv().rconsoleerr = function(text)
 		Bridge:rconsole("prt", "[ ERROR ] " .. text)
-		rconsolesettitle("Remake is NOT fat!")
+		rconsolesettitle("Artificial is NOT fat!")
 	end 
 	getgenv().rconsoleerror = getgenv().rconsoleerr 
 	getgenv().rconsolename = getgenv().rconsolesettitle
@@ -1489,14 +1489,14 @@ getgenv().getscriptclosure = function(module)
         return copy
     end
 end
-print("[ Remake ]: Added functions to the env.")
+print("[ Artificial ]: Added functions to the env.")
 if not shared.notified then 
     game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "Remake API Injected",
+        Title = "Artificial API Injected",
         Text = "Powered by Xeno\ndiscord.gg/getRemake",  -- xeno server: discord.gg/getxeno
         Duration = 2,
         Icon = "rbxassetid://84868819237025"
     })
     shared.notified = true 
 end 
-getgenv().IS_REMAKE_LOADED = true
+getgenv().IS_ARTIFICIAL_LOADED = true
