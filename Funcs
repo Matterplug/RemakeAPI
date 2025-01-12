@@ -1,4 +1,3 @@
--- open source because lol 
 getgenv().IS_ARTIFICIAL_LOADED = false
 local oldr = request 
 getgenv().request = function(options)
@@ -38,7 +37,7 @@ getgenv().require = function(scr) -- not mine
 				if game:GetObjects('rbxassetid://' .. scr)[1].Source ~= "" then 
 					return loadstring(game:GetObjects('rbxassetid://' .. scr)[1].Source)()
 				else 
-					warn("[ Remake ]: Require failed: cant require a modulescript with no code")
+					warn("[ Artificial ]: Require failed: cant require a modulescript with no code")
 				end
 			else 
 				warn("[ Artificial ]: Require failed: require asset id failed")
@@ -873,7 +872,7 @@ function Bridge:InternalRequest(body, timeout)
 			return
 		end
 
-		error("[Remake Error]: Unknown error", 2)
+		error("[Artificial Error]: Unknown error", 2)
 		return
 	end
 
@@ -941,7 +940,7 @@ function Bridge:request(options)
 	end
 	return {
 		Success = false,
-		StatusMessage = "[Artificial Error]: webServer connection failed:  " .. self.serverUrl,
+		StatusMessage = "[Remake Error]: webServer connection failed:  " .. self.serverUrl,
 		StatusCode = 599;
 		HttpError = Enum.HttpError.ConnectFail
 	}
@@ -1493,9 +1492,9 @@ print("[ Artificial ]: Added functions to the env.")
 if not shared.notified then 
     game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = "Artificial API Injected",
-        Text = "Powered by Xeno\ndiscord.gg/getRemake",  -- xeno server: discord.gg/getxeno
+        Text = "Powered by Artificial",
         Duration = 2,
-        Icon = "rbxassetid://84868819237025"
+        Icon = "rbxassetid://74228903502282"
     })
     shared.notified = true 
 end 
